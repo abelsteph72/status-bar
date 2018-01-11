@@ -8,12 +8,12 @@ class StatusBarView
     @element.classList.add('status-bar')
 
     @leftPanel = document.createElement('div')
-    @leftPanel.classList.add('status-bar-left')
+    @leftPanel.classList.add('status-bar-Container', 'status-bar-Container--left')
     @element.appendChild(@leftPanel)
     @element.leftPanel = @leftPanel
 
     @rightPanel = document.createElement('div')
-    @rightPanel.classList.add('status-bar-right')
+    @rightPanel.classList.add('status-bar-Container', 'status-bar-Container--right')
     @element.appendChild(@rightPanel)
     @element.rightPanel = @rightPanel
 

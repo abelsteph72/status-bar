@@ -12,6 +12,25 @@ status-bar {
   overflow: hidden;
   -webkit-user-select: none;
 
+  &-Container {
+    overflow-x: auto; // Add horizontal overflow scrolling
+    // prevent badly behaved status bar items from causing vertical scrolling
+    // in the status bar. They can always implement overflow: auto to scroll
+    // within themselves.
+    overflow-y: hidden;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &--left {
+      flex: 1 1 33%; // Use 1/3 of space -> will get cut-off first when narrow
+    }
+    
+    &--left {
+      padding-left: var(--spacer);
+    }
+  }
+
   a, 
   a:hover {
     color: inherit;
@@ -23,30 +42,6 @@ status-bar {
     text-decoration: none;
     cursor: default;
   }
-
-  // Use 1/3 of space -> will get cut-off first when narrow
-  .status-bar-left {
-    flex: 1 1 33%;
-  }
-
-  // Use 2/3 of space
-  .status-bar-right {
-    padding-left: var(--spacer);
-  }
-
-  // Add horizontal overflow scrolling
-  .status-bar-left,
-  .status-bar-right {
-    overflow-x: auto;
-    // prevent badly behaved status bar items from causing vertical scrolling
-    // in the status bar. They can always implement overflow: auto to scroll
-    // within themselves.
-    overflow-y: hidden;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
   
   // Status bar items
 
