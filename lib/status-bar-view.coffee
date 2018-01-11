@@ -7,18 +7,14 @@ class StatusBarView
     @element = document.createElement('status-bar')
     @element.classList.add('status-bar')
 
-    flexboxHackElement = document.createElement('div')
-    flexboxHackElement.classList.add('flexbox-repaint-hack')
-    @element.appendChild(flexboxHackElement)
-
     @leftPanel = document.createElement('div')
     @leftPanel.classList.add('status-bar-left')
-    flexboxHackElement.appendChild(@leftPanel)
+    @element.appendChild(@leftPanel)
     @element.leftPanel = @leftPanel
 
     @rightPanel = document.createElement('div')
     @rightPanel.classList.add('status-bar-right')
-    flexboxHackElement.appendChild(@rightPanel)
+    @element.appendChild(@rightPanel)
     @element.rightPanel = @rightPanel
 
     @leftTiles = []
