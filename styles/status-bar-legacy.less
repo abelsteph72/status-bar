@@ -61,10 +61,27 @@
     }
   }
 
-  // Remove underline
+  // The GitHub package includes multiple tiles into one item
+  // So it needs to be split up by styling its children
+  .github-StatusBarTileController {
+    max-width: none;
+    &:hover {
+      background-color: transparent; // Remove hover effect
+    }
+    .inline-block {
+      padding-left: var(--spacer-2);
+      padding-right: var(--spacer-2);
+      &:hover {
+        background-color: var(--bg-highlight);
+      }
+      &:active {
+        background-color: transparent;
+      }
+    }
+  }
   .github-ChangedFilesCount {
     &:hover {
-      text-decoration: none;
+      text-decoration: none; // Remove underline
     }
   }
 
