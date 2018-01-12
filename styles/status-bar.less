@@ -1,5 +1,6 @@
-@import "ui-variables";
-@import "octicon-mixins";
+
+// Status Bar
+// ----------------------------------
 
 .status-bar {
   position: relative;
@@ -8,126 +9,66 @@
   height: var(--bar-height);
   line-height: var(--bar-height);
   white-space: nowrap;
-  cursor: default;
   overflow: hidden;
+  cursor: default;
   -webkit-user-select: none;
+
+
+  // Container ---------
 
   &-Container {
     overflow-x: auto; // Add horizontal overflow scrolling
+    
     // prevent badly behaved status bar items from causing vertical scrolling
     // in the status bar. They can always implement overflow: auto to scroll
     // within themselves.
     overflow-y: hidden;
     
     &::-webkit-scrollbar {
-      display: none;
+      display: none; // remove scrollbars
     }
   }
 
-  a, 
-  a:hover {
-    color: inherit;
-  }
 
-  // underlines should only be used for external links
-  a:hover,
-  a:focus {
-    text-decoration: none;
-    cursor: default;
-  }
-  
-  // Status bar items
+  // Item ---------
 
-  .inline-block {
-    max-width: 20vw; // Limit inline-blocks from getting too long
-    margin: 0; // override default
-    padding: 0 var(--spacer-2);
+  &-Item {
+    display: inline-block;
+    padding-left: var(--spacer-2);
+    padding-right: var(--spacer-2);
     vertical-align: top;
+    
+    // Add ellipsis in case item gets too big
+    max-width: 20vw;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 
     &:hover {
-      color: var(--fg-strong);
       background-color: var(--bg-highlight);
     }
     &:active {
-      background-color: var(--bg);
-    }
-
-    // reset padding on child inline-block
-    .inline-block {
-      padding: 0;
-    }
-  }
-
-
-  // Icons
-
-  .icon {
-    vertical-align: middle;
-    &::before {
-      margin-right: 2px);
+      background-color: transparent;
     }
   }
 
 }
 
 
-// Package overrides -------------------------------
-// TODO: Fix in packages
+// States
+// ----------------------------------
 
-.status-bar {
-
-  // Read-only -> Remove hover effect
-  .is-read-only, // <- use this class in packages
-  status-bar-launch-mode,
-  busy-signal {
-    &:hover,
-    &:active,
-    .inline-block:hover,
-    .inline-block:active {
+.status-bar-Item {
+  
+  &.is-readOnly {
+    &:hover {
       background-color: transparent;
     }
   }
 
-  // Remove underline
-  .package-updates-status-view,
-  .github-ChangedFilesCount {
-    &:hover,
-    &:focus {
-      text-decoration: none;
-      cursor: default;
-    }
-  }
-
-  // grammar-selector package
-  .grammar-status a {
-    color: inherit;
-  } 
-  .grammar-status a:hover {
-    color: var(--fg-strong);
-  }
-
-
-  // No width limit for file-info -> will get cut off if too long
-  .inline-block.file-info {
-    max-width: none;
-  }
-
-  .file-info.buffer-modified::after {
-    content: '*';
-  }
-
-  // git view
-  .git-view {
-    display: inline-block;
-  }
-
-  .hide,
-  .current-path:empty,
-  .cursor-position:empty,
-  .selection-count:empty {
+  .hide, // <- deprected
+  &.is-hidden {
     display: none;
   }
+
 }

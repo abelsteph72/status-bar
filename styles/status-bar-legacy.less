@@ -1,0 +1,86 @@
+
+// Child overrides
+// -------------------------------
+// These elements most likely get added by packages
+// TODO: Consider making them part of the API
+
+.status-bar {
+
+  // Inline blocks --------
+
+  .inline-block { // <- deprecated
+    margin-right: 0;
+  }
+
+
+  // Links --------
+  
+  a, 
+  a:hover {
+    color: inherit; // don't color links
+    text-decoration: none; // underlines should only be used for external links
+  }
+  
+
+  // Icons --------
+
+  .icon {
+    vertical-align: middle;
+    
+    &::before {
+      margin-right: 2px;
+    }
+
+    &:only-child::before {
+      margin-right: 0; // no margin if icon only
+    }
+  }
+
+}
+
+
+
+// Package overrides 
+// -----------------------------------------
+// TODO: Move to packages
+
+.status-bar {
+
+  // Need .is-readOnly -> Remove hover effect
+  status-bar-launch-mode,
+  busy-signal {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  // Remove underline
+  .package-updates-status-view {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // Remove underline
+  .github-ChangedFilesCount {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // file name
+  .file-info {
+    max-width: none; // No width limit for file-info -> will get cut off if too long
+
+    &.buffer-modified::after {
+      content: '*'; // Add modified indicator
+    }
+  }
+
+  // Hide if empty
+  .current-path:empty,
+  .cursor-position:empty,
+  .selection-count:empty {
+    display: none;
+  }
+}

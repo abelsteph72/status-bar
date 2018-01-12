@@ -54,6 +54,7 @@ class StatusBarView
     @leftTiles.splice(index, 0, newTile)
     newElement = atom.views.getView(newItem)
     nextElement = atom.views.getView(nextItem)
+    newElement.classList.add('status-bar-Item')
     @leftPanel.insertBefore(newElement, nextElement)
     newTile
 
@@ -70,6 +71,7 @@ class StatusBarView
     @rightTiles.splice(index, 0, newTile)
     newElement = atom.views.getView(newItem)
     nextElement = atom.views.getView(nextItem)
+    newElement.classList.add('status-bar-Item')
     @rightPanel.insertBefore(newElement, nextElement)
     newTile
 
